@@ -17,30 +17,30 @@ image:
     - bintray-kong
 env:
   database: postgres
-  proxy_access_log: /dev/stdout
-  admin_access_log: /dev/stdout
-  admin_gui_access_log: /dev/stdout
-  portal_api_access_log: /dev/stdout
-  proxy_error_log: /dev/stderr
-  admin_error_log: /dev/stderr
-  admin_gui_error_log: /dev/stderr
-  portal_api_error_log: /dev/stderr
+  # proxy_access_log: /dev/stdout
+  # admin_access_log: /dev/stdout
+  # admin_gui_access_log: /dev/stdout
+  # portal_api_access_log: /dev/stdout
+  # proxy_error_log: /dev/stderr
+  # admin_error_log: /dev/stderr
+  # admin_gui_error_log: /dev/stderr
+  # portal_api_error_log: /dev/stderr
   prefix: /kong_prefix/
-  ontrusted_lua: on
+  # ontrusted_lua: on
   proxy_url: http://proxy-kong.apps.pvergilis-rosa.ukwh.p1.openshiftapps.com
   admin_api_uri: http://admin-kong.apps.pvergilis-rosa.ukwh.p1.openshiftapps.com
   admin_gui_url: http://manager-kong.apps.pvergilis-rosa.ukwh.p1.openshiftapps.com
   portal_gui_host: dev-portal.apps.pvergilis-rosa.ukwh.p1.openshiftapps.com
   portal_api_url: http://dev-portal-api.apps.pvergilis-rosa.ukwh.p1.openshiftapps.com
   portal_gui_protocol: http
-  portal_auth: basic-auth
+  # portal_auth: basic-auth
   #Database Information
-  pg_host: postgresql
-  pg_port: 5432
-  pg_timeout: 5000
-  pg_user: kong
-  pg_password: kong
-  pg_database: kong
+  # pg_host: postgresql
+  # pg_port: 5432
+  # pg_timeout: 5000
+  # pg_user: kong
+  # pg_password: kong
+  # pg_database: kong
   # Super User Password
   password: kong
   #password:
@@ -218,7 +218,7 @@ ingressController:
   installCRDs: false
   image:
     repository: kong/kubernetes-ingress-controller
-    tag: 2.1
+    tag: 2.3
     pullPolicy: IfNotPresent
     pullSecrets:
       - bintray-kong
@@ -228,3 +228,5 @@ ingressController:
         secretKeyRef:
           name: kong-enterprise-superuser-password #CHANGEME
           key: password #CHANGEME
+global:
+  storageClass: "gp2"

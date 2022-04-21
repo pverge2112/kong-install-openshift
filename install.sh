@@ -1,12 +1,12 @@
 #!/bin/bash
-echo -e "This script will install Kong on a provisioned Red Hat Openshift AWS (ROSA) cluster"
-echo -e "Keep in mind that this service is cost intensive so delete it as soon as you do not need it anymore more with the also included delete.sh script"
-echo -e "*** Prerequesites"
-echo -e "*** 1. An AWS account (obviously)"
-echo -e "*** 2. An Red Hat account"
-echo -e "*** 3. aws cli installed on your machine"
-echo -e "*** 4. aws cli configured with a user having enough permissions"
-echo -e "*** 5. rosa installed"
+echo -e "This script will install Kong on a provisioned Red Hat Openshift cluster"
+# echo -e "Keep in mind that this service is cost intensive so delete it as soon as you do not need it anymore more with the also included delete.sh script"
+# echo -e "*** Prerequesites"
+# echo -e "*** 1. An AWS account (obviously)"
+# echo -e "*** 2. An Red Hat account"
+# echo -e "*** 3. aws cli installed on your machine"
+# echo -e "*** 4. aws cli configured with a user having enough permissions"
+# echo -e "*** 5. rosa installed"
 echo -e "*** 6. oc cli"
 echo -e "*** 7. Helm (version 3, not version 2!)"
 echo -e "*** 8. yq"
@@ -28,7 +28,8 @@ echo -e "\n*** Creating required Secrets"
 # . ./create_postgres.sh
 
 echo -e "\n*** Installing Kong Enterprise"
-helm install my-kong kong/kong --set ingressController.installCRDs=false -f ./values.yaml -n kong --set global.storageClass=""
+helm install my-kong kong/kong --set ingressController.installCRDs=false --values ./values.yaml -n kong 
+# --set global.storageClass="gp2"
 
 echo -e "\n ☕ Creating Kong routes"
 . ./create_routes.sh
